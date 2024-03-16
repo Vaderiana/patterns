@@ -34,6 +34,7 @@ class DeliveryTest {
         $(By.cssSelector("[name='phone']")).sendKeys(validUser.getPhone());
         $(By.cssSelector("[class='checkbox__text']")).click();
         $(By.cssSelector("button.button")).click();
+        $(By.cssSelector("button.button")).click();
         String text = $("[class='notification__title']").getText();
         if (text.equals("Необходимо подтверждение")){
             $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);

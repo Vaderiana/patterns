@@ -1,5 +1,5 @@
 import com.codeborne.selenide.Condition;
-import data.DataGenerator;
+import data.DataGeneratorDelivery;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -8,7 +8,7 @@ import org.openqa.selenium.Keys;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
-import static data.DataGenerator.generateDate;
+import static data.DataGeneratorDelivery.generateDate;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class DeliveryTest {
@@ -21,7 +21,7 @@ class DeliveryTest {
     @Test
     @DisplayName("Should successful plan and replan meeting")
     void shouldSuccessfulPlanAndReplanMeeting() {
-        var validUser = DataGenerator.Registration.generateUser("ru");
+        var validUser = DataGeneratorDelivery.Registration.generateUser("ru");
         var daysToAddForFirstMeeting = 4;
         var firstMeetingDate = generateDate(daysToAddForFirstMeeting);
         var actualDate = firstMeetingDate;

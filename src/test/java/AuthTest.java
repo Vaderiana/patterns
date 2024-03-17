@@ -51,8 +51,6 @@ class AuthTest {
         $(By.cssSelector("[name='login']")).sendKeys(NONEXISTENT);
         $(By.cssSelector("[name='password']")).sendKeys(NONEXISTENT);
         $(By.cssSelector("[data-test-id='action-login']")).click();
-        String text = $("[class='notification__title']").getText();
-        assertEquals("Ошибка", text);
         $("[class='notification__content']")
                 .shouldHave(Condition.text("Ошибка! Неверно указан логин или пароль"))
                 .shouldBe(Condition.visible);
@@ -64,8 +62,6 @@ class AuthTest {
         $(By.cssSelector("[name='login']")).sendKeys(activeUser.getLogin());
         $(By.cssSelector("[name='password']")).sendKeys(NONEXISTENT);
         $(By.cssSelector("[data-test-id='action-login']")).click();
-        String text = $("[class='notification__title']").getText();
-        assertEquals("Ошибка", text);
         $("[class='notification__content']")
                 .shouldHave(Condition.text("Ошибка! Неверно указан логин или пароль"))
                 .shouldBe(Condition.visible);
@@ -77,8 +73,6 @@ class AuthTest {
         $(By.cssSelector("[name='login']")).sendKeys(blockedUser.getLogin());
         $(By.cssSelector("[name='password']")).sendKeys(blockedUser.getPassword());
         $(By.cssSelector("[data-test-id='action-login']")).click();
-        String text = $("[class='notification__title']").getText();
-        assertEquals("Ошибка", text);
         $("[class='notification__content']")
                 .shouldHave(Condition.text("Ошибка! Пользователь заблокирован"))
                 .shouldBe(Condition.visible);

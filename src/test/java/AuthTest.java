@@ -37,7 +37,7 @@ class AuthTest {
 
     @AfterEach
     void cleanUp() {
-        closeWebDriver();
+        closeWindow();
     }
 
     @Test

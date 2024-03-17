@@ -46,6 +46,7 @@ class AuthTest {
         $(By.cssSelector("[name='login']")).sendKeys(activeUser.getLogin());
         $(By.cssSelector("[name='password']")).sendKeys(activeUser.getPassword());
         $(By.cssSelector("[data-test-id='action-login']")).click();
+        $(By.cssSelector("[data-test-id='action-login']")).click();
         webdriver().shouldHave(url("http://localhost:9999/dashboard"));
     }
 
@@ -54,6 +55,7 @@ class AuthTest {
     void shouldNotLoginWithInvalidUser() {
         $(By.cssSelector("[name='login']")).sendKeys(NONEXISTENT);
         $(By.cssSelector("[name='password']")).sendKeys(NONEXISTENT);
+        $(By.cssSelector("[data-test-id='action-login']")).click();
         $(By.cssSelector("[data-test-id='action-login']")).click();
         String text = $("[class='notification__title']").getText();
         assertEquals("Ошибка", text);
@@ -68,6 +70,7 @@ class AuthTest {
         $(By.cssSelector("[name='login']")).sendKeys(activeUser.getLogin());
         $(By.cssSelector("[name='password']")).sendKeys(NONEXISTENT);
         $(By.cssSelector("[data-test-id='action-login']")).click();
+        $(By.cssSelector("[data-test-id='action-login']")).click();
         String text = $("[class='notification__title']").getText();
         assertEquals("Ошибка", text);
         $("[class='notification__content']")
@@ -80,6 +83,7 @@ class AuthTest {
     void shouldNotLoginWithBlockedUser() {
         $(By.cssSelector("[name='login']")).sendKeys(blockedUser.getLogin());
         $(By.cssSelector("[name='password']")).sendKeys(blockedUser.getPassword());
+        $(By.cssSelector("[data-test-id='action-login']")).click();
         $(By.cssSelector("[data-test-id='action-login']")).click();
         String text = $("[class='notification__title']").getText();
         assertEquals("Ошибка", text);

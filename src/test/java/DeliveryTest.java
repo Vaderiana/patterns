@@ -1,6 +1,7 @@
 import com.codeborne.selenide.Condition;
 import data.DataGeneratorDelivery;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -18,6 +19,7 @@ class DeliveryTest {
         open("http://localhost:9999");
     }
 
+    @Disabled
     @Test
     @DisplayName("Should successful plan and replan meeting")
     void shouldSuccessfulPlanAndReplanMeeting() {

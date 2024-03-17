@@ -4,9 +4,7 @@ import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.*;
@@ -30,18 +28,26 @@ class AuthTest {
     static void setUpAll() {
         activeUser = getRegisteredUser("active");
         blockedUser = getRegisteredUser("blocked");
-        open("http://localhost:9999");
-
     }
 
-@Test
-@DisplayName("Should successfully login with active user")
-void shouldSuccessfullyLogin() {
-    $(By.cssSelector("[name='login']")).sendKeys(activeUser.getLogin());
-    $(By.cssSelector("[name='password']")).sendKeys(activeUser.getPassword());
-    $(By.cssSelector("[data-test-id='action-login']")).click();
-    webdriver().shouldHave(url("http://localhost:9999/dashboard"));
-}
+    @BeforeEach
+    void setup() {
+        open("http://localhost:9999");
+    }
+
+    @AfterEach
+    void cleanUp() {
+        closeWebDriver();
+    }
+
+    @Test
+    @DisplayName("Should successfully login with active user")
+    void shouldSuccessfullyLogin() {
+        $(By.cssSelector("[name='login']")).sendKeys(activeUser.getLogin());
+        $(By.cssSelector("[name='password']")).sendKeys(activeUser.getPassword());
+        $(By.cssSelector("[data-test-id='action-login']")).click();
+        webdriver().shouldHave(url("http://localhost:9999/dashboard"));
+    }
 
     @Test
     @DisplayName("Should not login with not existed user")

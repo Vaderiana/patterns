@@ -18,8 +18,7 @@ class DeliveryTest {
     void setup() {
         open("http://localhost:9999");
     }
-
-    @Disabled
+    
     @Test
     @DisplayName("Should successful plan and replan meeting")
     void shouldSuccessfulPlanAndReplanMeeting() {
